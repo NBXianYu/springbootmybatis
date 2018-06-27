@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.example.springbootmybatis.dao.TableDao">
+    <resultMap id="detailMap" type="com.example.springbootmybatis.model.TableModel">
+        <result column="column_name" property="fieldName"/>
+        <result column="data_type" property="fieldType"/>
+    </resultMap>
+
+    <select id="getTableName" resultType="String" >
+        select table_name from information_schema.tables where table_schema=#{databaseName} and table_type='base table';
+    </select>
+
+    <select id="getTableDetail" resultMap="detailMap">
+        select column_name,data_type  from information_schema.columns where table_schema=#{databaseName} and table_name=#{tableName}
+    </select>
+
+</mapper>

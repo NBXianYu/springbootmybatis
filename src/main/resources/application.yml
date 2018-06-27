@@ -1,0 +1,42 @@
+#公共配置与profiles选择无关
+mybatis:
+  mapper-locations: classpath:sql-mapping/*.xml
+  type-aliases-package: com.example.springbootmybatis
+
+#开发配置
+spring:
+  datasource:
+    name: ssm
+    url: jdbc:mysql://localhost:3306/bysj?characterEncoding=utf8
+    username: root
+    password: pass1234
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+
+
+my:
+  servers:
+    - dev.bar.com
+    - foo.bar.com
+    - jiaobuchong.com
+  webserver:
+    #HTTP 监听端口
+    port: 80
+    #嵌入Web服务器的线程池配置
+    threadPool:
+      maxThreads: 100
+      minThreads: 8
+      idleTimeout: 60000
